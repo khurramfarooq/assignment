@@ -17,7 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from .views import stc_view
+from .views import (
+    stc_view,
+    stc_connectivity_view
+)
 
 # router = routers.DefaultRouter()
 # router.register(r'routers/(?P<id>\d+)/$', stc_view.STCViewSet)
@@ -25,6 +28,6 @@ from .views import stc_view
 urlpatterns = [
     # url(r'^', include(router.urls)),
     url('^routers/(?P<id>\d+)?/?(?P<router_name>.+)?/?$', stc_view.STCViewSet.as_view()),
+    url('^connectivity/neighbour/(?P<id>\d+)?/?(?P<router_name>.+)?/?$', stc_connectivity_view.STCRouterNeighbour.as_view()),
     url(r'^admin/', admin.site.urls),
-
 ]

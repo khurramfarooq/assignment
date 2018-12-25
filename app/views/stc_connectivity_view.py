@@ -1,14 +1,13 @@
+
 from rest_framework import generics
+from rest_framework.decorators import action
 
 from app.models.models import Router
-from app.serializer.stc_serializer import RouterSerializer
+from app.serializer.stc_serializer import ConnectivitySerializer
 
 
-class STCViewSet(generics.ListAPIView):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    serializer_class = RouterSerializer
+class STCRouterNeighbour(generics.ListAPIView):
+    serializer_class = ConnectivitySerializer
 
     def get_queryset(self):
         query_params = dict(filter(lambda val: val[1], self.kwargs.items()))

@@ -27,7 +27,6 @@ class Command(BaseCommand):
             files.extend(filenames)
 
         for f_name in files:
-            # router_name = f_name.replace('.conf', '')
 
             platform = False
             brief = False
@@ -107,14 +106,10 @@ class Command(BaseCommand):
                 setattr(router, 'router_name', f_name.replace('.conf', ''))
                 router.save()
 
-                # all_inter_obj = []
-                # for card in cards:
-                #     interface_obj = card.pop('interface', {})
-                #     card_obj, _ = Card.objects.get_or_create(router=router, **card)
-                #     for key, val in interface_obj.items():
-                #         all_inter_obj.append(Interface(card=card_obj, **val))
-                # Interface.objects.bulk_create(all_inter_obj)
-
-
-# a = Command()
-# a.handle()
+                all_inter_obj = []
+                for card in cards:
+                    interface_obj = card.pop('interface', {})
+                    card_obj, _ = Card.objects.get_or_create(router=router, **card)
+                    for key, val in interface_obj.items():
+                        all_inter_obj.append(Interface(card=card_obj, **val))
+                Interface.objects.bulk_create(all_inter_obj)
