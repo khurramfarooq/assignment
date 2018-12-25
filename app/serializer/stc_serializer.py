@@ -37,10 +37,7 @@ class ConnectivitySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Router
-        fields = ('id', 'router_name', 'card', 'neighbour_data',)
-
-    def prepare_connectivity_data(self, data):
-        pass
+        fields = ('id', 'router_name', 'card',)
 
     card = CardSerializer(many=True, read_only=True)
 
